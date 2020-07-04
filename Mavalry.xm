@@ -15,6 +15,7 @@
 		return %orig;
 	}
 }
+
 %end
 
 %group LSnoToday
