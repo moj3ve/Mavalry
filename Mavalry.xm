@@ -18,7 +18,6 @@
 %end
 
 %group LSnoToday
-
 %hook SBMainDisplayPolicyAggregator
 
 -(BOOL)_allowsCapabilityLockScreenTodayViewWithExplanation:(id*)arg1 {
