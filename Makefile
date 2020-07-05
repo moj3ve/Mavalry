@@ -11,6 +11,7 @@ include $(THEOS)/makefiles/common.mk
 TWEAK_NAME = Mavalry
 
 Mavalry_FILES = Mavalry.xm
+Mavalry_EXTRA_FRAMEWORKS += Cephei
 Tweak.xm_CFLAGS = -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/tweak.mk

@@ -1,12 +1,4 @@
 #include "BRUHRootListController.h"
-#import <Foundation/Foundation.h>
-#import <Preferences/PSSpecifier.h>
-#import <Preferences/PSSwitchTableCell.h>
-#import <AudioToolbox/AudioServices.h>
-#import <SpringBoard/SpringBoard.h>
-#import <SpringBoardServices/SBSRestartRenderServerAction.h>
-#import <FrontBoardServices/FBSSystemService.h>
-#import <Preferences/PreferencesAppController.h>
 
 @interface BRUHSwitchCell : PSSwitchTableCell
 -(UIColor *)colorFromHex:(NSString *)hex withAlpha:(CGFloat)alpha;
@@ -56,25 +48,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 @implementation SB
 
-- (id)readPreferenceValue:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}
-
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	[settings setObject:value forKey:specifier.properties[@"key"]];
-	[settings writeToFile:path atomically:YES];
-	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	if (notificationName) {
-		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
-	}
-}
-
 - (id)specifiers {
 	if(_specifiers == nil) {
 		_specifiers = [self loadSpecifiersFromPlistName:@"SB" target:self];
@@ -82,41 +55,24 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [UIView animateWithDuration:1.0 animations:^{
-        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
-    }];
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
 
 @implementation Lockscreen
-
-- (id)readPreferenceValue:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}
-
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	[settings setObject:value forKey:specifier.properties[@"key"]];
-	[settings writeToFile:path atomically:YES];
-	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	if (notificationName) {
-		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
-	}
-}
 
 - (id)specifiers {
 	if(_specifiers == nil) {
@@ -125,41 +81,24 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [UIView animateWithDuration:1.0 animations:^{
-        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
-    }];
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
 
 @implementation CC
-
-- (id)readPreferenceValue:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}
-
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	[settings setObject:value forKey:specifier.properties[@"key"]];
-	[settings writeToFile:path atomically:YES];
-	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	if (notificationName) {
-		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
-	}
-}
 
 - (id)specifiers {
 	if(_specifiers == nil) {
@@ -168,41 +107,24 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [UIView animateWithDuration:1.0 animations:^{
-        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
-    }];
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
 
 @implementation Applications
-
-- (id)readPreferenceValue:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}
-
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	[settings setObject:value forKey:specifier.properties[@"key"]];
-	[settings writeToFile:path atomically:YES];
-	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	if (notificationName) {
-		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
-	}
-}
 
 - (id)specifiers {
 	if(_specifiers == nil) {
@@ -211,41 +133,24 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [UIView animateWithDuration:1.0 animations:^{
-        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
-    }];
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
 
 @implementation Reddit
-
-- (id)readPreferenceValue:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}
-
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	[settings setObject:value forKey:specifier.properties[@"key"]];
-	[settings writeToFile:path atomically:YES];
-	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	if (notificationName) {
-		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
-	}
-}
 
 - (id)specifiers {
 	if(_specifiers == nil) {
@@ -254,41 +159,24 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [UIView animateWithDuration:1.0 animations:^{
-        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
-    }];
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
 
 @implementation Haptics
-
-- (id)readPreferenceValue:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}
-
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	[settings setObject:value forKey:specifier.properties[@"key"]];
-	[settings writeToFile:path atomically:YES];
-	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	if (notificationName) {
-		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
-	}
-}
 
 - (id)specifiers {
 	if(_specifiers == nil) {
@@ -297,41 +185,24 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [UIView animateWithDuration:1.0 animations:^{
-        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
-    }];
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
 
 @implementation Creds
-
-- (id)readPreferenceValue:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}
-
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	[settings setObject:value forKey:specifier.properties[@"key"]];
-	[settings writeToFile:path atomically:YES];
-	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	if (notificationName) {
-		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
-	}
-}
 
 - (id)specifiers {
 	if(_specifiers == nil) {
@@ -340,88 +211,46 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [UIView animateWithDuration:1.0 animations:^{
-        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
-    }];
-}
-
-- (void)ajaidanLink {
-	AudioServicesPlaySystemSound(1520);
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/ajaidan"] options:@{} completionHandler:nil];
-}
-
-- (void)wildfireLink {
-	AudioServicesPlaySystemSound(1520);
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://wldfire.ca"] options:@{} completionHandler:nil];
-}
-
-- (void)samohtLink {
-	AudioServicesPlaySystemSound(1520);
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://reddit.com/u/bobbyboys301"] options:@{} completionHandler:nil];
-}
-
-- (void)andyLink {
-	AudioServicesPlaySystemSound(1520);
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/andrewwiik"] options:@{} completionHandler:nil];
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
 
 @implementation BRUHRootListController
 
-- (id)readPreferenceValue:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
-	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	[settings setObject:value forKey:specifier.properties[@"key"]];
-	[settings writeToFile:path atomically:YES];
-	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	if (notificationName) {
-		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
+-(id)init {
+	self = [super init];
+	if(self) {
+		HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+		_respringApplyButton = (_respringApplyButton) ?: [[UIBarButtonItem alloc] initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(respring)];
+		_respringApplyButton.tintColor = [UIColor whiteColor];
+		[self.navigationItem setRightBarButtonItem:_respringApplyButton animated:YES];
+		appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+		appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+		appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+		appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+		appearanceSettings.translucentNavigationBar = NO;
+		self.hb_appearanceSettings = appearanceSettings;
 	}
+
+	return self;
 }
-
-- (void)respring {
-	NSURL *returnURL = [NSURL URLWithString:@"prefs:root=Mavalry"]; 
-    SBSRelaunchAction *restartAction;
-    restartAction = [NSClassFromString(@"SBSRelaunchAction") actionWithReason:@"RestartRenderServer" options:SBSRelaunchActionOptionsFadeToBlackTransition targetURL:returnURL];
-    [[NSClassFromString(@"FBSSystemService") sharedService] sendActions:[NSSet setWithObject:restartAction] withResult:nil];
-}
-
-- (void)respringPrompt {
-	AudioServicesPlaySystemSound(1520);
-	UIAlertController *respringAlert = [UIAlertController alertControllerWithTitle:@"Mavalry"
-	message:@"Do you want to respring?"
-	preferredStyle:UIAlertControllerStyleActionSheet];
-
-	UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-		[self respring];
-	}];
-
-	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Decline" style:UIAlertActionStyleCancel handler:nil];
-
-	[respringAlert addAction:confirmAction];
-	[respringAlert addAction:cancelAction];
-
-	AudioServicesPlaySystemSound(1520);
-	[self presentViewController:respringAlert animated:YES completion:nil];
-}
-
 
 - (void)confirmPrompt {
 	AudioServicesPlaySystemSound(1520);
@@ -438,22 +267,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	AudioServicesPlaySystemSound(1520);
 	[self presentViewController:confirmAlert animated:YES completion:nil];
 }
-
-- (void)sourceLink {
-	AudioServicesPlaySystemSound(1520);
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/ajaidan/mavalry"] options:@{} completionHandler:nil];
-}
-
-- (void)donate {
-	AudioServicesPlaySystemSound(1520);
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://paypal.me/ajaidan"] options:@{} completionHandler:nil];
-}
-
-- (void)discord {
-	AudioServicesPlaySystemSound(1520);
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://discord.gg/w8pvXJd"] options:@{} completionHandler:nil];
-}
-
 
 - (NSArray *)specifiers {
 	if (!_specifiers) {
@@ -499,12 +312,13 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	UIBarButtonItem *respringButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Apply"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(respringPrompt)];
-	self.navigationItem.rightBarButtonItem = respringButton;
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
 	NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];

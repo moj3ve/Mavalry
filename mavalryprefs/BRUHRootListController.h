@@ -1,32 +1,39 @@
 #import <Preferences/PSListController.h>
+#import <Preferences/PSSpecifier.h>
+#import <Preferences/PSSwitchTableCell.h>
+#import <CepheiPrefs/HBRootListController.h>
+#import <CepheiPrefs/HBAppearanceSettings.h>
+#import <Cephei/HBRespringController.h>
+#import <Cephei/HBPreferences.h>
+#import <AudioToolbox/AudioServices.h>
 
-@interface BRUHRootListController : PSListController {
+@interface BRUHRootListController : HBRootListController
+@property(nonatomic, retain) UIBarButtonItem *respringApplyButton;
+@end
+
+@interface Creds : HBRootListController {
+}
+@end
+@interface SB : HBRootListController {
 }
 @end
 
-@interface Creds : PSListController {
-}
-@end
-@interface SB : PSListController {
+@interface Lockscreen : HBRootListController {
 }
 @end
 
-@interface Lockscreen : PSListController {
+@interface CC : HBRootListController {
 }
 @end
 
-@interface CC : PSListController {
+@interface Applications : HBRootListController {
 }
 @end
 
-@interface Applications : PSListController {
+@interface Reddit : HBRootListController {
 }
 @end
 
-@interface Reddit : PSListController {
-}
-@end
-
-@interface Haptics : PSListController {
+@interface Haptics : HBRootListController {
 }
 @end

@@ -24,7 +24,7 @@
 			<key>label</key>
 			<string>Add percentage labels for CC sliders</string>
 			<key>PostNotification</key>
-			<string>com.ajaidan.mavalryprefs.settingschanged</string>
+			<string>com.ajaidan.mavalryprefs/ReloadPrefs</string>
 		</dict>
 
 		<dict>
@@ -55,7 +55,7 @@
 			<key>segmentCount</key>
 			<integer>20</integer>
 			<key>PostNotification</key>
-			<string>com.ajaidan.mavalryprefs.settingschanged</string>
+			<string>com.ajaidan.mavalryprefs/ReloadPrefs</string>
 		</dict>
 
     </array>

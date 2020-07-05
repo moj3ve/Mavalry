@@ -1,5 +1,6 @@
 #import "Mavalry.h"
 #import <spawn.h>
+#import <Cephei/HBPreferences.h>
 
 // Check if tweak is set up
 %hook SBLockScreenManager
@@ -136,57 +137,6 @@
 %end
 %end
 
-%group CCPercentage
-%hook CCUIBaseSliderView
-%property (nonatomic, retain) UILabel *percentLabel;
-
-- (id)initWithFrame:(CGRect)frame {
-	CCUIBaseSliderView *orig = %orig;
-	orig.percentLabel = [[UILabel alloc] init];
-	orig.percentLabel.textColor = [UIColor whiteColor];
-	orig.percentLabel.text = @"0%";
-	orig.percentLabel.center = CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.85);
-	[orig addSubview:orig.percentLabel];
-	orig.percentLabel.layer.allowsGroupBlending = NO;
-	orig.percentLabel.layer.allowsGroupOpacity = YES;
-	orig.percentLabel.layer.compositingFilter = kCAFilterDestOut;
-	orig.percentLabel.font = [orig.percentLabel.font fontWithSize:(CCLabelsSize)];
-	return orig;
-}
-
-- (void)layoutSubviews {
-	%orig;
-
-	if ([self valueForKey:@"_glyphPackageView"]) {
-		UIView *glyphView = (UIView *)[self valueForKey:@"_glyphPackageView"];
-		glyphView.center = CGPointMake(self.bounds.size.width*0.5,self.bounds.size.height*0.5);
-		if (self.percentLabel) {
-			if ([self.percentLabel superview] != glyphView) {
-				if ([self.percentLabel superview]) [self.percentLabel removeFromSuperview];
-				[glyphView addSubview:self.percentLabel];
-			}
-
-			if ([self.percentLabel superview] == glyphView) {
-				self.percentLabel.layer.allowsGroupBlending = NO;
-				self.percentLabel.layer.allowsGroupOpacity = YES;
-				self.percentLabel.layer.compositingFilter = kCAFilterDestOut;
-				self.percentLabel.text = [[NSString stringWithFormat:@"%.f", [self value]*100] stringByAppendingString:@"%"];
-				[self.percentLabel sizeToFit];
-				self.percentLabel.center = [self convertPoint:CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.85) toView:glyphView];
-
-			}
-
-		if ([self valueForKey:@"_compensatingGlyphPackageView"]) {
-			UIView *compensatingGlyphView = [self valueForKey:@"_compensatingGlyphPackageView"];
-			compensatingGlyphView.center = glyphView.center;
-
-		}
-	}
-}
-}
-%end
-%end
-
 %group Screenshot
 %hook SpringBoard
 -(void)takeScreenshot {
@@ -294,22 +244,35 @@
 // Loads prefs and inits
 %ctor {
 	%init;
-	loadPrefs();
-	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.ajaidan.mavalryprefs.settingschanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
-		if (isEnabled) {
-			if (moonGone) %init(DNDNotifs);
-			if (wantsHiddenLabels) %init(HideLabels);
-			if (wantsHiddenPageDots) %init(PageDots);
-			if (wantsTransparentDock) %init(DockBG);
-			if (hideFolderBackground) %init(FolderBG);
-			if (wantsOlderNotifs) %init(OlderNotifs);
-			if (wantsHomeBar) %init(HomeBar);
-			if (wantsCCLabels) %init(CCPercentage);
-			if (noTodayHS) %init(HSnoToday);
-			if (noTodayLS) %init(LSnoToday);
-			if (wantsHapticScreenshot) %init(Screenshot);
-			if (wantsHapticVol) %init(HapticVolume);
-			if (volumePref != 0.0) %init(VolumeStep);
-			if (noSpotlight) %init(HSnoSpotlight);
-		} else {}
+	HBPreferences *preferences = [[HBPreferences alloc] initWithIdentifier:@"com.ajaidan.mavalryprefs"];
+	[preferences registerBool:&isEnabled default:FALSE forKey:@"isEnabled"];
+	[preferences registerBool:&moonGone default:FALSE forKey:@"moonGone"];
+	[preferences registerBool:&wantsHiddenLabels default:FALSE forKey:@"wantsHiddenLabels"];
+	[preferences registerBool:&wantsTransparentDock default:FALSE forKey:@"wantsTransparentDock"];
+	[preferences registerBool:&hideFolderBackground default:FALSE forKey:@"hideFolderBackground"];
+	[preferences registerBool:&wantsOlderNotifs default:FALSE forKey:@"wantsOlderNotifs"];
+	[preferences registerBool:&wantsHomeBar default:FALSE forKey:@"wantsHomeBar"];
+	[preferences registerBool:&noTodayHS default:FALSE forKey:@"noTodayHS"];
+	[preferences registerBool:&noTodayLS default:FALSE forKey:@"noTodayLS"];
+	[preferences registerBool:&wantsHapticScreenshot default:FALSE forKey:@"wantsHapticScreenshot"];
+	[preferences registerBool:&wantsHapticVol default:FALSE forKey:@"wantsHapticVol"];
+	[preferences registerBool:&noSpotlight default:FALSE forKey:@"noSpotlight"];
+	[preferences registerFloat:&hapticPref default:1 forKey:@"hapticPref"];
+	[preferences registerFloat:&volumePref default:0 forKey:@"volumePref"];
+	[preferences registerFloat:&screenshotPref default:1 forKey:@"screenshotPref"];
+	if (isEnabled) {
+		if (moonGone) %init(DNDNotifs);
+		if (wantsHiddenLabels) %init(HideLabels);
+		if (wantsHiddenPageDots) %init(PageDots);
+		if (wantsTransparentDock) %init(DockBG);
+		if (hideFolderBackground) %init(FolderBG);
+		if (wantsOlderNotifs) %init(OlderNotifs);
+		if (wantsHomeBar) %init(HomeBar);
+		if (noTodayHS) %init(HSnoToday);
+		if (noTodayLS) %init(LSnoToday);
+		if (wantsHapticScreenshot) %init(Screenshot);
+		if (wantsHapticVol) %init(HapticVolume);
+		if (volumePref != 0.0) %init(VolumeStep);
+		if (noSpotlight) %init(HSnoSpotlight);
+	} else {}
 }
