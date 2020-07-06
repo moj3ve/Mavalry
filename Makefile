@@ -1,6 +1,6 @@
 ARCHS = arm64 arm64e
 
-export SDKVERSION = 13.4
+SDKVERSION = 13.5
 
 TARGET = ::13.0
 
