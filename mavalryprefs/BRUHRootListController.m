@@ -275,6 +275,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
+// All credits to Simalary (Chris)
+
 -(void)setupWelcomeController {
 	welcomeController = [[OBWelcomeController alloc] initWithTitle:@"Mavalry" detailText:@"The ultimate iOS customization tweak." icon:[UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/mavalryprefs.bundle/icon.png"]];
 
@@ -296,19 +298,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	welcomeController.view.tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
 	[self presentViewController:welcomeController animated:YES completion:nil]; // Don't forget to present it!
 }
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UIColor *tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-    [[[[self navigationController] navigationController] navigationBar] setTintColor:tintColor];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [UIView animateWithDuration:1.0 animations:^{
-        [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
-    }];
-} 
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
