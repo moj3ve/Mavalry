@@ -1,5 +1,7 @@
 #import <UIKit/UIControl.h>
 #import <Cephei/HBPreferences.h>
+#import <sys/utsname.h>
+#import <AudioToolbox/AudioServices.h>
 
 // Haptic generator
 UIImpactFeedbackGenerator *hapt;
@@ -30,7 +32,7 @@ extern NSString *const kCAFilterDestOut;
 BOOL isEnabled;
 
 // Booleans
-BOOL wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground, moonGone, noTodayLS, noTodayHS, noSpotlight, wantsHapticVol, wantsHapticScreenshot;
+BOOL wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground, moonGone, noTodayLS, noTodayHS, noSpotlight, wantsHapticVol, wantsHapticScreenshot, isHaptic;
 
 // Floats
 CGFloat hapticPref, volumePref, screenshotPref;

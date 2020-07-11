@@ -6,6 +6,13 @@
 	<key>items</key>
 	<array>
 
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>General</string>
+		</dict>
+
 		<!-- Enable/Disable label -->
 		<dict>
 			<key>cell</key>
@@ -51,16 +58,12 @@
 				<integer>1</integer>
 				<integer>2</integer>
 				<integer>3</integer>
-				<integer>4</integer>
-				<integer>5</integer>
 			</array>
 			<key>validTitles</key>
 			<array>
 				<string>Light</string>
 				<string>Medium</string>
 				<string>Strong</string>
-				<string>Soft</string>
-				<string>Rigid</string>
 			</array>
 			<key>alignment</key>
 			<string>5</string>
@@ -143,16 +146,12 @@
 				<integer>1</integer>
 				<integer>2</integer>
 				<integer>3</integer>
-				<integer>4</integer>
-				<integer>5</integer>
 			</array>
 			<key>validTitles</key>
 			<array>
 				<string>Light</string>
 				<string>Medium</string>
 				<string>Strong</string>
-				<string>Soft</string>
-				<string>Rigid</string>
 			</array>
 			<key>alignment</key>
 			<string>5</string>

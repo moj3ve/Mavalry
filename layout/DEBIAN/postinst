@@ -3,3 +3,6 @@ echo ""
 echo "Thank you for installing Mavalry!"
 echo ""
 echo ""
+
+echo "Cleaning up old preference files..."
+rm -rf /var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist

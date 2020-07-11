@@ -21,11 +21,6 @@
 @interface Lockscreen : HBRootListController {
 }
 @end
-
-@interface CC : HBRootListController {
-}
-@end
-
 @interface Applications : HBRootListController {
 }
 @end

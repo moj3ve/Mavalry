@@ -139,32 +139,26 @@
 
 %group Screenshot
 %hook SpringBoard
+
 -(void)takeScreenshot {
 
 	%orig;
-
 	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
 	[hapt prepare];
-
+			
 	if (screenshotPref == 1) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
 
 	} else if (screenshotPref == 2) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
 
 	} else if (screenshotPref == 3) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
-
-	} else if (screenshotPref == 4) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
-
-	} else if (screenshotPref == 5) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
-
 	}
-			
 	[hapt impactOccurred];
+	
 }
+
 %end
 %end
 
@@ -174,27 +168,18 @@
 - (void)increaseVolume {
 
 	%orig;
-
 	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
 	[hapt prepare];
-
-	if (hapticPref == 1) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
-
-	} else if (hapticPref == 2) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
-
-	} else if (hapticPref == 3) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
-
-	} else if (hapticPref == 4) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
-
-	} else if (hapticPref == 5) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
-
-	}
 			
+	if (volumePref == 1) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+
+	} else if (volumePref == 2) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+
+	} else if (volumePref == 3) {
+		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+	}
 	[hapt impactOccurred];
 	
 }
@@ -202,27 +187,18 @@
 - (void)decreaseVolume {
 
 	%orig;
-
 	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
 	[hapt prepare];
-
-	if (hapticPref == 1) {
+			
+	if (volumePref == 1) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
 
-	} else if (hapticPref == 2) {
+	} else if (volumePref == 2) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
 
-	} else if (hapticPref == 3) {
+	} else if (volumePref == 3) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
-
-	} else if (hapticPref == 4) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleSoft]; //Soft feedback
-
-	} else if (hapticPref == 5) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleRigid]; //Rigid feedback
-
 	}
-			
 	[hapt impactOccurred];
 	
 }
@@ -245,34 +221,35 @@
 %ctor {
 	%init;
 	HBPreferences *preferences = [[HBPreferences alloc] initWithIdentifier:@"com.ajaidan.mavalryprefs"];
-	[preferences registerBool:&isEnabled default:FALSE forKey:@"isEnabled"];
-	[preferences registerBool:&moonGone default:FALSE forKey:@"moonGone"];
-	[preferences registerBool:&wantsHiddenLabels default:FALSE forKey:@"wantsHiddenLabels"];
-	[preferences registerBool:&wantsTransparentDock default:FALSE forKey:@"wantsTransparentDock"];
-	[preferences registerBool:&hideFolderBackground default:FALSE forKey:@"hideFolderBackground"];
-	[preferences registerBool:&wantsOlderNotifs default:FALSE forKey:@"wantsOlderNotifs"];
-	[preferences registerBool:&wantsHomeBar default:FALSE forKey:@"wantsHomeBar"];
-	[preferences registerBool:&noTodayHS default:FALSE forKey:@"noTodayHS"];
-	[preferences registerBool:&noTodayLS default:FALSE forKey:@"noTodayLS"];
-	[preferences registerBool:&wantsHapticScreenshot default:FALSE forKey:@"wantsHapticScreenshot"];
-	[preferences registerBool:&wantsHapticVol default:FALSE forKey:@"wantsHapticVol"];
-	[preferences registerBool:&noSpotlight default:FALSE forKey:@"noSpotlight"];
+	[preferences registerBool:&isEnabled default:NO forKey:@"isEnabled"];
+	[preferences registerBool:&moonGone default:NO forKey:@"moonGone"];
+	[preferences registerBool:&wantsHiddenLabels default:NO forKey:@"wantsHiddenLabels"];
+	[preferences registerBool:&wantsTransparentDock default:NO forKey:@"wantsTransparentDock"];
+	[preferences registerBool:&hideFolderBackground default:NO forKey:@"hideFolderBackground"];
+	[preferences registerBool:&wantsOlderNotifs default:NO forKey:@"wantsOlderNotifs"];
+	[preferences registerBool:&wantsHomeBar default:NO forKey:@"wantsHomeBar"];
+	[preferences registerBool:&noTodayHS default:NO forKey:@"noTodayHS"];
+	[preferences registerBool:&noTodayLS default:NO forKey:@"noTodayLS"];
+	[preferences registerBool:&wantsHapticScreenshot default:YES forKey:@"wantsHapticScreenshot"];
+	[preferences registerBool:&wantsHapticVol default:NO forKey:@"wantsHapticVol"];
+	[preferences registerBool:&noSpotlight default:NO forKey:@"noSpotlight"];
+	[preferences registerBool:&isHaptic default:NO forKey:@"isHaptic"];
 	[preferences registerFloat:&hapticPref default:1 forKey:@"hapticPref"];
 	[preferences registerFloat:&volumePref default:0 forKey:@"volumePref"];
 	[preferences registerFloat:&screenshotPref default:1 forKey:@"screenshotPref"];
 	if (isEnabled) {
-		if (moonGone) %init(DNDNotifs);
-		if (wantsHiddenLabels) %init(HideLabels);
-		if (wantsHiddenPageDots) %init(PageDots);
-		if (wantsTransparentDock) %init(DockBG);
-		if (hideFolderBackground) %init(FolderBG);
-		if (wantsOlderNotifs) %init(OlderNotifs);
-		if (wantsHomeBar) %init(HomeBar);
-		if (noTodayHS) %init(HSnoToday);
-		if (noTodayLS) %init(LSnoToday);
-		if (wantsHapticScreenshot) %init(Screenshot);
-		if (wantsHapticVol) %init(HapticVolume);
-		if (volumePref != 0.0) %init(VolumeStep);
-		if (noSpotlight) %init(HSnoSpotlight);
+		if (moonGone) %init(DNDNotifs); else {}
+		if (wantsHiddenLabels) %init(HideLabels); else {}
+		if (wantsHiddenPageDots) %init(PageDots); else {}
+		if (wantsTransparentDock) %init(DockBG); else {}
+		if (hideFolderBackground) %init(FolderBG); else {}
+		if (wantsOlderNotifs) %init(OlderNotifs); else {}
+		if (wantsHomeBar) %init(HomeBar); else {}
+		if (noTodayHS) %init(HSnoToday); else {}
+		if (noTodayLS) %init(LSnoToday); else {}
+		if (wantsHapticScreenshot) %init(Screenshot); else {}
+		if (wantsHapticVol) %init(HapticVolume); else {}
+		if (volumePref != 0.0) %init(VolumeStep); else {}
+		if (noSpotlight) %init(HSnoSpotlight); else {}
 	} else {}
 }

@@ -59,18 +59,6 @@
 			<string>Lockscreen</string>
 		</dict>
 
-		<!-- CC subPref -->
-		<dict>
-			<key>cell</key>
-			<string>PSLinkCell</string>
-			<key>icon</key>
-			<string>cc</string>
-			<key>detail</key>
-			<string>CC</string>
-			<key>label</key>
-			<string>Control Center</string>
-		</dict>
-
 		<!-- Applications subPref -->
 		<dict>
 			<key>cell</key>
