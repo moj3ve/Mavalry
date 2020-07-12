@@ -176,6 +176,32 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 @end
 
+@implementation Reachability
+
+- (id)specifiers {
+	if(_specifiers == nil) {
+		_specifiers = [self loadSpecifiersFromPlistName:@"Reachability" target:self];
+	}
+	return _specifiers;
+}
+
+-(void)respring {
+	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
+}
+
+-(void)viewDidLoad {
+	[super viewDidLoad];
+	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
+	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
+	appearanceSettings.translucentNavigationBar = NO;
+	self.hb_appearanceSettings = appearanceSettings;
+}
+
+@end
+
 @implementation Creds
 
 - (id)specifiers {

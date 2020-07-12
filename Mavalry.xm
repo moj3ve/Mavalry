@@ -19,6 +19,23 @@
 
 %end
 
+%group ReachTimer
+%hook SBReachabilityManager
+
+-(void)_setKeepAliveTimer {}
+
+%end
+%end
+
+%group ReachChevron
+%hook SBReachabilityBackgroundView
+
+-(void)_setupChevron {}
+-(void)_updateChevronPathForUpFraction:(double)arg1 {}
+
+%end
+%end
+
 %group LSnoToday
 %hook SBMainDisplayPolicyAggregator
 
@@ -233,7 +250,8 @@
 	[preferences registerBool:&wantsHapticScreenshot default:YES forKey:@"wantsHapticScreenshot"];
 	[preferences registerBool:&wantsHapticVol default:NO forKey:@"wantsHapticVol"];
 	[preferences registerBool:&noSpotlight default:NO forKey:@"noSpotlight"];
-	[preferences registerBool:&isHaptic default:NO forKey:@"isHaptic"];
+	[preferences registerBool:&reachChevron default:NO forKey:@"reachChevron"];
+	[preferences registerBool:&reachTimer default:NO forKey:@"reachTimer"];
 	[preferences registerFloat:&hapticPref default:1 forKey:@"hapticPref"];
 	[preferences registerFloat:&volumePref default:0 forKey:@"volumePref"];
 	[preferences registerFloat:&screenshotPref default:1 forKey:@"screenshotPref"];
@@ -251,5 +269,7 @@
 		if (wantsHapticVol) %init(HapticVolume); else {}
 		if (volumePref != 0.0) %init(VolumeStep); else {}
 		if (noSpotlight) %init(HSnoSpotlight); else {}
+		if (reachChevron) %init(ReachChevron) else {}
+		if (reachTimer) %init(ReachTimer) else {}
 	} else {}
 }

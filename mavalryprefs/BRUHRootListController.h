@@ -32,3 +32,7 @@
 @interface Haptics : HBRootListController {
 }
 @end
+
+@interface Reachability : HBRootListController {
+}
+@end
