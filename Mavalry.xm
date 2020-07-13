@@ -188,13 +188,13 @@
 	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
 	[hapt prepare];
 			
-	if (volumePref == 1) {
+	if (hapticPref == 1) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
 
-	} else if (volumePref == 2) {
+	} else if (hapticPref == 2) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
 
-	} else if (volumePref == 3) {
+	} else if (hapticPref == 3) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
 	}
 	[hapt impactOccurred];
@@ -207,13 +207,13 @@
 	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
 	[hapt prepare];
 			
-	if (volumePref == 1) {
+	if (hapticPref == 1) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
 
-	} else if (volumePref == 2) {
+	} else if (hapticPref == 2) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
 
-	} else if (volumePref == 3) {
+	} else if (hapticPref == 3) {
 		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
 	}
 	[hapt impactOccurred];

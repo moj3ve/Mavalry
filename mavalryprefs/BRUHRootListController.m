@@ -234,24 +234,6 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
 }
 
--(id)init {
-	self = [super init];
-	if(self) {
-		HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-		_respringApplyButton = (_respringApplyButton) ?: [[UIBarButtonItem alloc] initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(respring)];
-		_respringApplyButton.tintColor = [UIColor whiteColor];
-		[self.navigationItem setRightBarButtonItem:_respringApplyButton animated:YES];
-		appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-		appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-		appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-		appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-		appearanceSettings.translucentNavigationBar = NO;
-		self.hb_appearanceSettings = appearanceSettings;
-	}
-
-	return self;
-}
-
 - (void)confirmPrompt {
 	AudioServicesPlaySystemSound(1520);
 	UIAlertController *confirmAlert = [UIAlertController alertControllerWithTitle:@"Mavalry"
@@ -275,7 +257,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
-// All credits to Simalary (Chris)
+// All credits to Simalary (Chris) and GalacticDev
 
 -(void)setupWelcomeController {
 	welcomeController = [[OBWelcomeController alloc] initWithTitle:@"Mavalry" detailText:@"The ultimate iOS customization tweak." icon:[UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/mavalryprefs.bundle/icon.png"]];
@@ -288,20 +270,22 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	OBBoldTrayButton* continueButton = [OBBoldTrayButton buttonWithType:1];
 	[continueButton addTarget:self action:@selector(dismissWelcomeController) forControlEvents:UIControlEventTouchUpInside];
 	[continueButton setTitle:@"Continue" forState:UIControlStateNormal];
-	[continueButton setClipsToBounds:YES]; // There seems to be an internal issue with the properties, so you may need to force this to YES like so.
-	[continueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal]; // There seems to be an internal issue with the properties, so you may need to force this to be [UIColor whiteColor] like so.
-	[continueButton.layer setCornerRadius:15]; // Set your button's corner radius. This can be whatever. If this doesn't work, make sure you make setClipsToBounds to YES.
+	[continueButton setClipsToBounds:YES];
+	[continueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal]; 
+	[continueButton.layer setCornerRadius:15]; 
 	[welcomeController.buttonTray addButton:continueButton];
 
-	welcomeController.modalPresentationStyle = UIModalPresentationPageSheet; // The same style stock iOS uses.
-	welcomeController.modalInPresentation = YES; //Set this to yes if you don't want the user to dismiss this on a down swipe.
+	welcomeController.modalPresentationStyle = UIModalPresentationPageSheet; 
+	welcomeController.modalInPresentation = YES; 
 	welcomeController.view.tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	[self presentViewController:welcomeController animated:YES completion:nil]; // Don't forget to present it!
+	[self presentViewController:welcomeController animated:YES completion:nil]; 
 }
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
 	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
+	_respringApplyButton = (_respringApplyButton) ?: [[UIBarButtonItem alloc] initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(respring)];
+	_respringApplyButton.tintColor = [UIColor whiteColor];
 	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
 	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
 	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
