@@ -11,6 +11,7 @@ TWEAK_NAME = Mavalry
 Mavalry_FILES = Mavalry.xm
 Mavalry_EXTRA_FRAMEWORKS += Cephei
 Tweak.xm_CFLAGS = -fobjc-arc
+Mavalry_FRAMEWORKS = AudioToolbox
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 SUBPROJECTS += mavalryprefs
