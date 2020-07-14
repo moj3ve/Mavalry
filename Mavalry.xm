@@ -15,15 +15,6 @@
 	} else {
 		return %orig;
 	}
-	NSString *version = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:version]];
-	NSNumber *thingy = [settings valueForKey:@"2.0"] ?: @0;
-	if([thingy isEqual:@0]) {
-		[settings setObject:@1 forKey:@"2.0"];
-		[settings writeToFile:path atomically:YES];
-	} else {
-		return %orig;
-	}
 }
 
 %end
