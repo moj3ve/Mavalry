@@ -3,9 +3,6 @@
 #import <sys/utsname.h>
 #import <AudioToolbox/AudioServices.h>
 
-// Haptic generator
-UIImpactFeedbackGenerator *hapt;
-
 extern NSString *const kCAFilterDestOut;
 
 @interface SBRootFolderView : UIView

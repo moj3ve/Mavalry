@@ -169,19 +169,16 @@
 -(void)takeScreenshot {
 
 	%orig;
-	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
-	[hapt prepare];
 			
 	if (screenshotPref == 1) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+		AudioServicesPlaySystemSound(1519); // light
 
 	} else if (screenshotPref == 2) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+		AudioServicesPlaySystemSound(1520); // medium
 
 	} else if (screenshotPref == 3) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+		AudioServicesPlaySystemSound(1521); // strong
 	}
-	[hapt impactOccurred];
 	
 }
 
@@ -194,38 +191,32 @@
 - (void)increaseVolume {
 
 	%orig;
-	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
-	[hapt prepare];
 			
 	if (hapticPref == 1) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+		AudioServicesPlaySystemSound(1519); // light
 
 	} else if (hapticPref == 2) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+		AudioServicesPlaySystemSound(1520); // medium
 
 	} else if (hapticPref == 3) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+		AudioServicesPlaySystemSound(1521); // strong
 	}
-	[hapt impactOccurred];
 	
 }
 
 - (void)decreaseVolume {
 
 	%orig;
-	UIImpactFeedbackGenerator *hapt = [[UIImpactFeedbackGenerator alloc] init];
-	[hapt prepare];
 			
 	if (hapticPref == 1) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleLight]; //Light feedback
+		AudioServicesPlaySystemSound(1519); // light
 
 	} else if (hapticPref == 2) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium]; //Medium feedback
+		AudioServicesPlaySystemSound(1520); // medium
 
 	} else if (hapticPref == 3) {
-		hapt = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy]; //Heavy feedback
+		AudioServicesPlaySystemSound(1521); // strong
 	}
-	[hapt impactOccurred];
 	
 }
 %end
