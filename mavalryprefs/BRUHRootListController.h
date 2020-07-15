@@ -7,6 +7,10 @@
 #import <Cephei/HBPreferences.h>
 #import <AudioToolbox/AudioServices.h>
 
+@interface BRUHAppearanceSettings : HBAppearanceSettings {    
+}
+@end
+
 @interface BRUHRootListController : HBRootListController
 @property(nonatomic, retain) UIBarButtonItem *respringApplyButton;
 @end

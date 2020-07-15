@@ -1,12 +1,12 @@
 ARCHS = arm64 arm64e
 
-export SDKVERSION = 13.4
+export SDKVERSION = 13.5
 
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = mavalryprefs
 
-mavalryprefs_FILES = BRUHRootListController.m
+mavalryprefs_FILES = BRUHRootListController.m BRUHAppearanceSettings.m
 mavalryprefs_INSTALL_PATH = /Library/PreferenceBundles
 mavalryprefs_FRAMEWORKS = UIKit
 mavalryprefs_PRIVATE_FRAMEWORKS = Preferences OnBoardingKit

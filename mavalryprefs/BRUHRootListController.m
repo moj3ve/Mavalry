@@ -61,13 +61,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-	appearanceSettings.translucentNavigationBar = NO;
-	self.hb_appearanceSettings = appearanceSettings;
+	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+    self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
@@ -87,13 +82,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-	appearanceSettings.translucentNavigationBar = NO;
-	self.hb_appearanceSettings = appearanceSettings;
+	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+    self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
@@ -113,13 +103,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-	appearanceSettings.translucentNavigationBar = NO;
-	self.hb_appearanceSettings = appearanceSettings;
+	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+    self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
@@ -139,13 +124,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-	appearanceSettings.translucentNavigationBar = NO;
-	self.hb_appearanceSettings = appearanceSettings;
+	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+    self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
@@ -165,13 +145,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-	appearanceSettings.translucentNavigationBar = NO;
-	self.hb_appearanceSettings = appearanceSettings;
+	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+    self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
@@ -191,13 +166,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-	appearanceSettings.translucentNavigationBar = NO;
-	self.hb_appearanceSettings = appearanceSettings;
+	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+    self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
@@ -217,13 +187,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-	appearanceSettings.translucentNavigationBar = NO;
-	self.hb_appearanceSettings = appearanceSettings;
+	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+    self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
@@ -257,6 +222,17 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 	return _specifiers;
 }
 
+-(id)init {
+	self = [super init];
+	if(self) {
+		_respringApplyButton = (_respringApplyButton) ?: [[UIBarButtonItem alloc] initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(respring)];
+		_respringApplyButton.tintColor = [UIColor whiteColor];
+		[self.navigationItem setRightBarButtonItem:_respringApplyButton animated:YES];
+
+	}
+	return self;
+}
+
 // All credits to Simalary (Chris) and GalacticDev
 
 -(void)setupWelcomeController {
@@ -283,15 +259,8 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	HBAppearanceSettings *appearanceSettings = [[HBAppearanceSettings alloc] init];
-	_respringApplyButton = (_respringApplyButton) ?: [[UIBarButtonItem alloc] initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(respring)];
-	_respringApplyButton.tintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTintColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarTitleColor = [UIColor whiteColor];
-	appearanceSettings.navigationBarBackgroundColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
-	appearanceSettings.tableViewCellSeparatorColor = [UIColor clearColor];
-	appearanceSettings.translucentNavigationBar = NO;
-	self.hb_appearanceSettings = appearanceSettings;
+	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+    self.hb_appearanceSettings = appearanceSettings;
 	NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];

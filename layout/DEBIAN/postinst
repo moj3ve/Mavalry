@@ -1,5 +1,2 @@
-[ -f /var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist ] && rm -rf /var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist || echo "No need to delete plist..."
-
 [ ! -f /var/mobile/.mavalry ] && mkdir -p /var/mobile/.mavalry/ && echo "Installing version tracker..."
-
-[ ! -f /var/mobile/.mavalry/v-2.0 ] && touch /var/mobile/.mavalry/v-2.0 && echo "Installed version tracker."
+[ ! -f /var/mobile/.mavalry/v-2.0nan ] && touch /var/mobile/.mavalry/v-2.0 && echo "Installed version tracker."

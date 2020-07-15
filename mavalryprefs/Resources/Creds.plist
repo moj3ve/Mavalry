@@ -64,26 +64,6 @@
 			<string>https://github.com/thomz07</string>
 		</dict>
 
-        <dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Sponsors</string>
-		</dict>
-
-       <dict>
-			<key>cellClass</key>
-			<string>HBLinkTableCell</string>
-			<key>label</key>
-			<string>Sponsored by:</string>
-			<key>subtitle</key>
-			<string>Wildfire</string>
-			<key>icon</key>
-			<string>creds.png</string>
-			<key>url</key>
-			<string>https://wldfire.ca</string>
-		</dict>
-
     </array>
 	<key>title</key>
 	<string>Credits</string>
