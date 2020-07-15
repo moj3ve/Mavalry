@@ -1,6 +1,7 @@
 #import "Mavalry.h"
 #import <spawn.h>
 #import <Cephei/HBPreferences.h>
+#include <RemoteLog.h>
 
 // Check if tweak is set up
 %hook SBLockScreenManager
@@ -12,8 +13,10 @@
 	NSNumber *didShowOBWelcomeController = [settings valueForKey:@"didShowOBWelcomeController"] ?: @0;
 	if([didShowOBWelcomeController isEqual:@0]) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"App-prefs:Mavalry"] options:@{} completionHandler:nil];
+		RLog(@"Successfully loaded tweak prefs.");
 	} else {
 		return %orig;
+		RLog(@"Tweak already set up.");
 	}
 }
 
@@ -227,6 +230,18 @@
 
 // Loads prefs and inits
 %ctor {
+	NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"/var/mobile/.mavalry"
+    	                                                                error:NULL];
+	NSMutableArray *vFiles = [[NSMutableArray alloc] init];
+	[dirs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    	NSString *filename = (NSString *)obj;
+        [vFiles addObject:filename];
+	}];
+	RLog(@"------");
+	RLog(@"");
+	RLog(@"%@", vFiles);
+	RLog(@"");
+	RLog(@"Tweak is loading.");
 	%init;
 	HBPreferences *preferences = [[HBPreferences alloc] initWithIdentifier:@"com.ajaidan.mavalryprefs"];
 	[preferences registerBool:&isEnabled default:NO forKey:@"isEnabled"];
@@ -247,20 +262,39 @@
 	[preferences registerFloat:&volumePref default:0 forKey:@"volumePref"];
 	[preferences registerFloat:&screenshotPref default:1 forKey:@"screenshotPref"];
 	if (isEnabled) {
+		RLog(@"Tweak is enabled.");
 		if (moonGone) %init(DNDNotifs); else {}
+		if (moonGone) RLog(@"moonGone is enabled."); else {RLog(@"moonGone is disabled.");}
 		if (wantsHiddenLabels) %init(HideLabels); else {}
+		if (wantsHiddenLabels) RLog(@"wantsHiddenLabels is enabled."); else {RLog(@"wantsHiddenLabels is disabled.");}
 		if (wantsHiddenPageDots) %init(PageDots); else {}
+		if (wantsHiddenPageDots) RLog(@"wantsHiddenPageDots is enabled."); else {RLog(@"wantsHiddenPageDots is disabled.");}
 		if (wantsTransparentDock) %init(DockBG); else {}
+		if (wantsTransparentDock) RLog(@"wantsTransparentDock is enabled."); else {RLog(@"wantsTransparentDock is disabled.");}
 		if (hideFolderBackground) %init(FolderBG); else {}
+		if (hideFolderBackground) RLog(@"hideFolderBackground is enabled."); else {RLog(@"hideFolderBackground is disabled.");}
 		if (wantsOlderNotifs) %init(OlderNotifs); else {}
+		if (wantsOlderNotifs) RLog(@"wantsOlderNotifs is enabled."); else {RLog(@"wantsOlderNotifs is disabled.");}
 		if (wantsHomeBar) %init(HomeBar); else {}
+		if (wantsHomeBar) RLog(@"wantsHomeBar is enabled."); else {RLog(@"wantsHomeBar is disabled.");}
 		if (noTodayHS) %init(HSnoToday); else {}
+		if (noTodayHS) RLog(@"noTodayHS is enabled."); else {RLog(@"noTodayHS is disabled.");}
 		if (noTodayLS) %init(LSnoToday); else {}
+		if (noTodayLS) RLog(@"noTodayLS is enabled."); else {RLog(@"noTodayLS is disabled.");}
 		if (wantsHapticScreenshot) %init(Screenshot); else {}
+		if (wantsHapticScreenshot) RLog(@"wantsHapticScreenshot is enabled."); else {RLog(@"wantsHapticScreenshot is disabled.");}
 		if (wantsHapticVol) %init(HapticVolume); else {}
+		if (wantsHapticVol) RLog(@"wantsHapticVol is enabled."); else {RLog(@"wantsHapticVol is disabled.");}
 		if (volumePref != 0.0) %init(VolumeStep); else {}
 		if (noSpotlight) %init(HSnoSpotlight); else {}
+		if (noSpotlight) RLog(@"noSpotlight is enabled."); else {RLog(@"noSpotlight is disabled.");}
 		if (reachChevron) %init(ReachChevron) else {}
+		if (reachChevron) RLog(@"reachChevron is enabled."); else {RLog(@"reachChevron is disabled.");}
 		if (reachTimer) %init(ReachTimer) else {}
-	} else {}
+		if (reachTimer) RLog(@"reachTimer is enabled."); else {RLog(@"reachTimer is disabled.");}
+	} else {
+		RLog(@"Tweak is disabled.");
+	}
+	RLog(@"------");
+	RLog(@"");
 }
