@@ -15,4 +15,4 @@ Download from the Packix repo.
 
 Assuming you have theos installed, run ```bash setup.sh``` from Mavalry's directory.
 
-Then, run ```make package```.
+Then, run ```make package``` or [this script](https://github.com/samoht9277/mpi).
