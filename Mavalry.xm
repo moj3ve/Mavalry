@@ -104,9 +104,11 @@
 
 %group PageDots
 %hook SBIconListPageControl
-- (id)initWithFrame:(CGRect)frame {
-	return nil;
+
+-(double)defaultHeight {
+	return 0;
 }
+
 %end
 
 %hook CSPageControl
@@ -118,6 +120,15 @@
 
 %group DockBG
 %hook SBDockView
+- (void)setBackgroundAlpha:(double)arg1 {
+	arg1 = 0;
+	%orig(arg1);
+}
+
+%end
+
+%hook SBFloatingDockView
+
 - (void)setBackgroundAlpha:(double)arg1 {
 	arg1 = 0;
 	%orig(arg1);
@@ -230,16 +241,14 @@
 
 // Loads prefs and inits
 %ctor {
-	NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"/var/mobile/.mavalry"
-    	                                                                error:NULL];
-	NSMutableArray *vFiles = [[NSMutableArray alloc] init];
-	[dirs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    	NSString *filename = (NSString *)obj;
-        [vFiles addObject:filename];
-	}];
 	RLog(@"------");
 	RLog(@"");
-	RLog(@"%@", vFiles);
+	NSArray* dirs = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"/var/mobile/.mavalry"
+    	                                                                error:NULL];
+	[dirs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    	NSString *filename = (NSString *)obj;
+		RLog(@"Version: %@", filename);
+	}];
 	RLog(@"");
 	RLog(@"Tweak is loading.");
 	%init;
