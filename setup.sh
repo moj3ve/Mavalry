@@ -5,7 +5,7 @@ echo $mavdir
 git clone https://github.com/Muirey03/RemoteLog.git
 cd RemoteLog
 sudo mv RemoteLog.h $THEOS/include
-mv rlogserver.py /home/ajaidan0/Projects/Mavalry
+mv rlogserver.py $mavdir
 cd $mavdir
 rm -rf RemoteLog
 echo "All set up."
