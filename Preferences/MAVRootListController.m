@@ -1,10 +1,10 @@
-#include "BRUHRootListController.h"
+#include "MAVRootListController.h"
 
-@interface BRUHSwitchCell : PSSwitchTableCell
+@interface MAVSwitchCell : PSSwitchTableCell
 -(UIColor *)colorFromHex:(NSString *)hex withAlpha:(CGFloat)alpha;
 @end
 
-@implementation BRUHSwitchCell {
+@implementation MAVSwitchCell {
   UIColor *_switchColor;
 }
 
@@ -61,7 +61,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+	MAVAppearanceSettings *appearanceSettings = [[MAVAppearanceSettings alloc] init];
     self.hb_appearanceSettings = appearanceSettings;
 }
 
@@ -82,7 +82,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+	MAVAppearanceSettings *appearanceSettings = [[MAVAppearanceSettings alloc] init];
     self.hb_appearanceSettings = appearanceSettings;
 }
 
@@ -103,7 +103,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+	MAVAppearanceSettings *appearanceSettings = [[MAVAppearanceSettings alloc] init];
     self.hb_appearanceSettings = appearanceSettings;
 }
 
@@ -124,7 +124,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+	MAVAppearanceSettings *appearanceSettings = [[MAVAppearanceSettings alloc] init];
     self.hb_appearanceSettings = appearanceSettings;
 }
 
@@ -145,7 +145,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+	MAVAppearanceSettings *appearanceSettings = [[MAVAppearanceSettings alloc] init];
     self.hb_appearanceSettings = appearanceSettings;
 }
 
@@ -166,7 +166,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+	MAVAppearanceSettings *appearanceSettings = [[MAVAppearanceSettings alloc] init];
     self.hb_appearanceSettings = appearanceSettings;
 }
 
@@ -187,13 +187,13 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+	MAVAppearanceSettings *appearanceSettings = [[MAVAppearanceSettings alloc] init];
     self.hb_appearanceSettings = appearanceSettings;
 }
 
 @end
 
-@implementation BRUHRootListController
+@implementation MAVRootListController
 
 -(void)respring {
 	[HBRespringController respringAndReturnTo:[NSURL URLWithString:@"prefs:root=Mavalry"]];
@@ -259,7 +259,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 -(void)viewDidLoad {
 	[super viewDidLoad];
-	BRUHAppearanceSettings *appearanceSettings = [[BRUHAppearanceSettings alloc] init];
+	MAVAppearanceSettings *appearanceSettings = [[MAVAppearanceSettings alloc] init];
     self.hb_appearanceSettings = appearanceSettings;
 	NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];

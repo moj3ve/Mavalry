@@ -20,7 +20,7 @@
 			<key>default</key>
 			<false/>
 			<key>cellClass</key>
-  			<string>BRUHSwitchCell</string>
+  			<string>MAVSwitchCell</string>
   			<key>switchColor</key>
   			<string>#9836C5</string>
  			 <key>switchColorAlpha</key>
@@ -41,7 +41,7 @@
 			<key>default</key>
 			<false/>
 			<key>cellClass</key>
-  			<string>BRUHSwitchCell</string>
+  			<string>MAVSwitchCell</string>
   			<key>switchColor</key>
   			<string>#9836C5</string>
  			 <key>switchColorAlpha</key>

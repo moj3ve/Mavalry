@@ -2,6 +2,8 @@
 #import <Cephei/HBPreferences.h>
 #import <sys/utsname.h>
 #import <AudioToolbox/AudioServices.h>
+#import <spawn.h>
+#include <RemoteLog.h>
 
 extern NSString *const kCAFilterDestOut;
 

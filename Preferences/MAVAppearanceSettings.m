@@ -1,6 +1,6 @@
-#import "BRUHRootListController.h"
+#import "MAVRootListController.h"
 
-@implementation BRUHAppearanceSettings
+@implementation MAVAppearanceSettings
 
 - (UIColor *)tintColor {
 

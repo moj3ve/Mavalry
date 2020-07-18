@@ -1,7 +1,4 @@
 #import "Mavalry.h"
-#import <spawn.h>
-#import <Cephei/HBPreferences.h>
-#include <RemoteLog.h>
 
 // Check if tweak is set up
 %hook SBLockScreenManager
