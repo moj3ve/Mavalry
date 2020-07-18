@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/ajaidan/Mavalry/master/mavalryprefs/Resources/PrefHeader@2x.png">
 </p>
 
-# Mavalry, by ajaidan0 and samoht.
+# Mavalry by ajaidan0 and samoht.
  Springboard customization, done right.
 
 # Free, and open sourced, unlike other tweaks.
