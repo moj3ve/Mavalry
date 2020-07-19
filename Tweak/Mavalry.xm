@@ -102,16 +102,10 @@
 %group PageDots
 %hook SBIconListPageControl
 
--(double)defaultHeight {
-	return 0;
+- (void)setHidden:(BOOL)arg1 {
+    %orig(YES);
 }
 
-%end
-
-%hook CSPageControl
-- (id)initWithFrame:(CGRect)frame {
-	return nil;
-}
 %end
 %end
 
@@ -253,6 +247,7 @@
 	[preferences registerBool:&isEnabled default:NO forKey:@"isEnabled"];
 	[preferences registerBool:&moonGone default:NO forKey:@"moonGone"];
 	[preferences registerBool:&wantsHiddenLabels default:NO forKey:@"wantsHiddenLabels"];
+	[preferences registerBool:&wantsHiddenPageDots default:NO forKey:@"wantsHiddenPageDots"];
 	[preferences registerBool:&wantsTransparentDock default:NO forKey:@"wantsTransparentDock"];
 	[preferences registerBool:&hideFolderBackground default:NO forKey:@"hideFolderBackground"];
 	[preferences registerBool:&wantsOlderNotifs default:NO forKey:@"wantsOlderNotifs"];

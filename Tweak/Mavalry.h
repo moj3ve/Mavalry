@@ -13,10 +13,6 @@ extern NSString *const kCAFilterDestOut;
 
 @end
 
-@interface SBIconListPageControl
-@property (nonatomic, assign, readwrite, getter=isHidden) BOOL hidden;
-@end
-
 @interface CCUIBaseSliderView : UIView
 @property(nonatomic, retain) UILabel *percentLabel;
 - (float)value;
