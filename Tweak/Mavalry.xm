@@ -131,7 +131,7 @@
 %group FolderBG 
 %hook SBFolderBackgroundView
 - (id)initWithFrame:(struct CGRect)arg1{
-  	return NULL;
+	return NULL;
 }
 %end
 
