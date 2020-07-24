@@ -1,23 +1,7 @@
+// Mavalry
+// Copyright (c) ajaidan0 2020
+
 #import "Mavalry.h"
-
-// Check if tweak is set up
-%hook SBLockScreenManager
-
-- (void)lockScreenViewControllerDidDismiss {
-	NSString *path = @"/var/mobile/Library/Preferences/com.ajaidan.mavalryprefs.plist";
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	NSNumber *didShowOBWelcomeController = [settings valueForKey:@"didShowOBWelcomeController"] ?: @0;
-	if([didShowOBWelcomeController isEqual:@0]) {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"App-prefs:Mavalry"] options:@{} completionHandler:nil];
-		RLog(@"Successfully loaded tweak prefs.");
-	} else {
-		return %orig;
-		RLog(@"Tweak already set up.");
-	}
-}
-
-%end
 
 %group ReachTimer
 %hook SBReachabilityManager

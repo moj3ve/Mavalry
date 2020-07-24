@@ -9,6 +9,3 @@ $(TWEAK_NAME)_EXTRA_FRAMEWORKS += Cephei
 $(TWEAK_NAME)_FRAMEWORKS += AudioToolbox
 
 include $(THEOS_MAKE_PATH)/tweak.mk
-
-after-install::
-	install.exec "sbreload"
