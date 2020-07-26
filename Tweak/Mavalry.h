@@ -31,7 +31,7 @@ extern NSString *const kCAFilterDestOut;
 BOOL isEnabled;
 
 // Booleans
-BOOL wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground, moonGone, noTodayLS, noTodayHS, noSpotlight, wantsHapticVol, wantsHapticScreenshot, reachChevron, reachTimer;
+BOOL wantsHomeBar, wantsOlderNotifs, wantsTransparentDock, wantsHiddenPageDots, wantsHiddenLabels, hideFolderBackground, moonGone, noTodayLS, noTodayHS, noSpotlight, wantsHapticVol, wantsHapticScreenshot, reachChevron, reachTimer, wantsBatteryPercentage;
 
 // Floats
 CGFloat hapticPref, volumePref, screenshotPref;

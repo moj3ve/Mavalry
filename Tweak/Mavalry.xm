@@ -3,6 +3,17 @@
 
 #import "Mavalry.h"
 
+%group BatteryPercentage
+%hook _UIBatteryView
+
+-(void)setShowsPercentage:(BOOL)arg1 {
+	arg1 = TRUE;
+	return %orig(arg1);
+}
+
+%end
+%end
+
 %group ReachTimer
 %hook SBReachabilityManager
 
@@ -14,8 +25,13 @@
 %group ReachChevron
 %hook SBReachabilityBackgroundView
 
--(void)_setupChevron {}
--(void)_updateChevronPathForUpFraction:(double)arg1 {}
+-(void)_setupChevron {
+	return;
+}
+
+-(void)_updateChevronPathForUpFraction:(double)arg1 {
+	return;
+}
 
 %end
 %end
@@ -230,6 +246,7 @@
 	HBPreferences *preferences = [[HBPreferences alloc] initWithIdentifier:@"com.ajaidan.mavalryprefs"];
 	[preferences registerBool:&isEnabled default:NO forKey:@"isEnabled"];
 	[preferences registerBool:&moonGone default:NO forKey:@"moonGone"];
+	[preferences registerBool:&wantsBatteryPercentage default:NO forKey:@"wantsBatteryPercentage"];
 	[preferences registerBool:&wantsHiddenLabels default:NO forKey:@"wantsHiddenLabels"];
 	[preferences registerBool:&wantsHiddenPageDots default:NO forKey:@"wantsHiddenPageDots"];
 	[preferences registerBool:&wantsTransparentDock default:NO forKey:@"wantsTransparentDock"];
@@ -250,6 +267,8 @@
 		RLog(@"Tweak is enabled.");
 		if (moonGone) %init(DNDNotifs); else {}
 		if (moonGone) RLog(@"moonGone is enabled."); else {RLog(@"moonGone is disabled.");}
+		if (wantsBatteryPercentage) %init(BatteryPercentage); else {}
+		if (wantsBatteryPercentage) RLog(@"wantsBatteryPercentage is enabled."); else {RLog(@"wantsBatteryPercentage is disabled.");}
 		if (wantsHiddenLabels) %init(HideLabels); else {}
 		if (wantsHiddenLabels) RLog(@"wantsHiddenLabels is enabled."); else {RLog(@"wantsHiddenLabels is disabled.");}
 		if (wantsHiddenPageDots) %init(PageDots); else {}
