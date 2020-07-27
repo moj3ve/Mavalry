@@ -1,3 +1,6 @@
+// Mavalry
+// Copyright (c) ajaidan0 2020
+
 #import <UIKit/UIControl.h>
 #import <Cephei/HBPreferences.h>
 #import <sys/utsname.h>
