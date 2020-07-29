@@ -253,7 +253,7 @@ OBWelcomeController *welcomeController; // Declaring this here outside of a meth
 
 	welcomeController.modalPresentationStyle = UIModalPresentationPageSheet; 
 	welcomeController.modalInPresentation = YES; 
-	welcomeController.view.tintColor = [UIColor colorWithRed: 0.60 green: 0.21 blue: 0.77 alpha: 1.00];
+	welcomeController.view.tintColor = [UIColor colorWithRed: 0.57 green: 0.22 blue: 0.85 alpha: 1.00];
 	[self presentViewController:welcomeController animated:YES completion:nil]; 
 }
 
